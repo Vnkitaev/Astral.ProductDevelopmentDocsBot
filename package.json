@@ -1,0 +1,37 @@
+{
+  "name": "astral-bor",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run build && node dist/bot",
+    "build": "rollup -c rollup.config.js -i src/startup.ts -o dist/bot.js"
+  },
+  "dependencies": {
+    "telegraf": "3.38.0",
+    "fuse.js": "6.4.1",
+    "dayjs": "1.8.35",
+    "dayjs-business-days": "1.0.4",
+    "docxmarks": "2.2.4",
+    "google-spreadsheet": "3.0.13"
+  },
+  "devDependencies": {
+    "@types/puppeteer": "2.0.1",
+    "dotenv": "8.2.0",
+    "cross-env": "7.0.2",
+    "@nestjs/cli": "7.1.2",
+    "@nestjs/schematics": "7.0.0",
+    "@types/express": "4.17.6",
+    "@types/node": "12.12.31",
+    "@types/lodash": "4.14.150",
+    "prettier": "2.0.4",
+    "tsconfig-paths": "3.9.0",
+    "@typescript-eslint/eslint-plugin": "2.27.0",
+    "@typescript-eslint/parser": "2.27.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-import": "2.20.2",
+    "typescript": "3.8.3",
+    "rollup": "2.6.1",
+    "@rollup/plugin-typescript": "4.1.1"
+  }
+}
