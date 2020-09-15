@@ -6,13 +6,13 @@ export class Application {
   private commands: ApplicationCommands;
 
   constructor() {
-    this.commands = new ApplicationCommands();
+    this.commands = new ApplicationCommands(services);
   }
 
   public async bootstrap() {
     const bot = services.telegramService.create('1396690722:AAFzLTQ07apHceWyelUwCRXkuKmNdwvC1PM');
 
-    // await this.commands.init(bot);
+    await this.commands.init(bot);
 
     this.commands.subscribe(bot);
 
