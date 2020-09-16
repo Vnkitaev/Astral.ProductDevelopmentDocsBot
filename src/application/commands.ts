@@ -1,4 +1,4 @@
-import { map, uniq, filter, sumBy } from 'lodash';
+import { map, uniq, filter, includes, sumBy } from 'lodash';
 import { session, Markup } from 'telegraf';
 import { rowsToUsers } from './utils';
 
@@ -11,6 +11,9 @@ enum FirstStepCommands {
 export class ApplicationCommands {
   private readonly services: any;
   private users: any[];
+  private readonly allowIds = [
+    344347
+  ];
 
   constructor(services) {
     this.services = services;
@@ -21,6 +24,7 @@ export class ApplicationCommands {
 
   public async init(bot) {
     bot.use(session());
+    bot.use(this.secureMiddleware);
 
     await this.updateUsers();
   }
@@ -35,6 +39,12 @@ export class ApplicationCommands {
     const rows = await this.services.googleSpreadsheetService.getDocumentSheetRows('1Heedc2ZuE55ZM0qVwqx-5Yt8JZ4zICTFES1eetSUQ5g', 0);
 
     this.users = rowsToUsers(rows);
+  }
+
+  private async secureMiddleware(ctx, next) {
+    if (includes(this.allowIds, ctx.from.id)) return next();
+
+    return ctx.reply('Доступ запрещён');
   }
 
   private start(ctx: any) {
