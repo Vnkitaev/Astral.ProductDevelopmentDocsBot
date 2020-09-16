@@ -1,5 +1,9 @@
 import { map } from 'lodash';
 
+export const formatNumberParts = number => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
+export const formatPrice = price => `${formatNumberParts(price)} руб.`;
+
 export const parseMoney = (sum) => {
   if (sum === '#N/A') return 0;
 
